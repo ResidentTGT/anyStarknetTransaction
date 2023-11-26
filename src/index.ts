@@ -21,7 +21,7 @@ import { Unframed } from "./starknet/unframed";
 import { delay } from "./utils/delay";
 
 const DELAY_BETWEEN_ACCS_IN_S = 300; // 5 min
-const WAIT_ETHEREUM_GAS_PRICE = 30; // gwei
+const WAIT_ETHEREUM_GAS_PRICE = 35; // gwei
 
 enum StarknetFunctions {
   Myswap = 1,
@@ -58,7 +58,9 @@ const STARKNET_TRANSACTIONS = [
 
 const PRIVATE_KEYS = fs
   .readFileSync("private_keys.txt", "utf-8")
-  .split(/\r?\n/);
+  .split("\n")
+  .map((line) => line.trim())
+  .filter((line) => line !== "");
 
 async function main() {
   const network = Network.DefaultByChainId(ChainId.Starknet);
