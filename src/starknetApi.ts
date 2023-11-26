@@ -13,7 +13,6 @@ import { Account } from "./account/models/account.type";
 import { log } from "./utils/console";
 import { delay } from "./utils/delay";
 import { TokenBalance } from "./starknet/models/tokenBalance.interface";
-import { TransactionReceiptResponse } from "./starknet/models/transactionReceiptResponse.interface";
 
 const ERC20_ABI_ADDRESS =
   "0x048624e084dc68d82076582219c7ed8cb0910c01746cca3cd72a28ecfe07e42d";
@@ -65,11 +64,7 @@ export class StarknetApi {
     return { balance: uint256.uint256ToBN(balance.balance), decimals };
   }
 
-  async sendEth(
-    ACCOUNT: Account,
-    to: string,
-    amount?: number
-  ): Promise<TransactionReceiptResponse> {
+  async sendEth(ACCOUNT: Account, to: string, amount?: number): Promise<any> {
     if (!ACCOUNT.wallets?.starknet?.address)
       throw new Error("There is no account.wallets.starknet.address!");
     if (!ACCOUNT.wallets.starknet.private)
@@ -154,7 +149,7 @@ export class StarknetApi {
     return resp;
   }
 
-  async upgrade(ACCOUNT: Account): Promise<TransactionReceiptResponse> {
+  async upgrade(ACCOUNT: Account): Promise<any> {
     if (!ACCOUNT.wallets?.starknet?.address)
       throw new Error("There is no account.wallets.starknet.address!");
     if (!ACCOUNT.wallets.starknet.private)
@@ -221,7 +216,7 @@ export class StarknetApi {
     return finalAddr;
   }
 
-  async deployAccount(ACCOUNT: Account): Promise<TransactionReceiptResponse> {
+  async deployAccount(ACCOUNT: Account): Promise<any> {
     if (!ACCOUNT.wallets?.starknet?.address)
       throw new Error("There is no account.wallets.starknet.address!");
     if (!ACCOUNT.wallets.starknet.private)

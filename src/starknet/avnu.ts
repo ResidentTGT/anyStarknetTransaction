@@ -1,4 +1,3 @@
-import { TransactionReceiptResponse } from "./models/transactionReceiptResponse.interface";
 import { ethers } from "ethers";
 import { Account as StarknetAccount } from "starknet";
 import {
@@ -22,7 +21,7 @@ export class Avnu {
     tokenTo: string,
     amount?: number,
     slippageInPercent = 0.5
-  ): Promise<TransactionReceiptResponse> {
+  ): Promise<any> {
     if (!ACCOUNT.wallets?.starknet?.address)
       throw new Error("There is no account.wallets.starknet.address!");
     if (!ACCOUNT.wallets.starknet.private)

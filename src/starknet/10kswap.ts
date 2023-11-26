@@ -1,5 +1,4 @@
 import puppeteer from "puppeteer";
-import { TransactionReceiptResponse } from "./models/transactionReceiptResponse.interface";
 import { QuoteRequest, Quote, fetchQuotes } from "@avnu/avnu-sdk";
 import { ethers } from "ethers";
 import { uint256, CallData, Account as StarknetAccount } from "starknet";
@@ -17,7 +16,7 @@ export class Swap10k {
     tokenTo: string,
     amount?: number,
     slippageInPercent = 0.5
-  ): Promise<TransactionReceiptResponse> {
+  ): Promise<any> {
     if (!ACCOUNT.wallets?.starknet?.address)
       throw new Error("There is no account.wallets.starknet.address!");
     if (!ACCOUNT.wallets.starknet.private)
@@ -142,7 +141,7 @@ export class Swap10k {
     token2: string,
     amountOfToken1: number,
     slippageInPercent = 0.5
-  ): Promise<TransactionReceiptResponse> {
+  ): Promise<any> {
     if (!ACCOUNT.wallets?.starknet?.address)
       throw new Error("There is no account.wallets.starknet.address!");
     if (!ACCOUNT.wallets.starknet.private)

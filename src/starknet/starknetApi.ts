@@ -10,7 +10,6 @@ import {
 import { Network } from "../network";
 import { ethers } from "ethers";
 import { TokenBalance } from "./models/tokenBalance.interface";
-import { TransactionReceiptResponse } from "./models/transactionReceiptResponse.interface";
 import { Account } from "../account/models/account.type";
 import { log } from "../utils/console";
 import { delay } from "../utils/delay";
@@ -65,11 +64,7 @@ export class StarknetApi {
     return { balance: uint256.uint256ToBN(balance.balance), decimals };
   }
 
-  async sendEth(
-    ACCOUNT: Account,
-    to: string,
-    amount?: number
-  ): Promise<TransactionReceiptResponse> {
+  async sendEth(ACCOUNT: Account, to: string, amount?: number): Promise<any> {
     if (!ACCOUNT.wallets?.starknet?.address)
       throw new Error("There is no account.wallets.starknet.address!");
     if (!ACCOUNT.wallets.starknet.private)
@@ -154,7 +149,7 @@ export class StarknetApi {
     return resp;
   }
 
-  async upgrade(ACCOUNT: Account): Promise<TransactionReceiptResponse> {
+  async upgrade(ACCOUNT: Account): Promise<any> {
     if (!ACCOUNT.wallets?.starknet?.address)
       throw new Error("There is no account.wallets.starknet.address!");
     if (!ACCOUNT.wallets.starknet.private)
@@ -221,7 +216,7 @@ export class StarknetApi {
     return finalAddr;
   }
 
-  async deployAccount(ACCOUNT: Account): Promise<TransactionReceiptResponse> {
+  async deployAccount(ACCOUNT: Account): Promise<any> {
     if (!ACCOUNT.wallets?.starknet?.address)
       throw new Error("There is no account.wallets.starknet.address!");
     if (!ACCOUNT.wallets.starknet.private)

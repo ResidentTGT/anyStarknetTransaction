@@ -56,8 +56,8 @@ const STARKNET_TRANSACTIONS = [
   StarknetFunctions._10kswap,
 ];
 
-const PRIVATE_KEYS = fs
-  .readFileSync("private_keys.txt", "utf-8")
+const WALLETS = fs
+  .readFileSync("wallets.txt", "utf-8")
   .split("\n")
   .map((line) => line.trim())
   .filter((line) => line !== "");
@@ -66,13 +66,16 @@ async function main() {
   const network = Network.DefaultByChainId(ChainId.Starknet);
   const api = new StarknetApi(network);
 
+  const PRIVATE_KEYS = WALLETS.map((w) => w.split(";")[0]);
+  const ADDRESSES = WALLETS.map((w) => w.split(";")[1]);
+
   for (let i = 0; i < PRIVATE_KEYS.length; i++) {
     const account: Account = {
       name: (i + 1).toString(),
       wallets: { starknet: { private: PRIVATE_KEYS[i] } },
     };
     if (!account.wallets?.starknet) throw new Error();
-    account.wallets.starknet.address = await api.getAddress(account);
+    account.wallets.starknet.address = ADDRESSES[i];
 
     log(
       `Account ${account.name} (${account.wallets.starknet.address}) started.`,

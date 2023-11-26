@@ -17,7 +17,7 @@ export class Jediswap {
     tokenTo: string,
     amount?: number,
     slippageInPercent = 0.5
-  ): Promise<TransactionReceiptResponse> {
+  ): Promise<any> {
     if (!ACCOUNT.wallets?.starknet?.address)
       throw new Error("There is no account.wallets.starknet.address!");
     if (!ACCOUNT.wallets.starknet.private)
@@ -142,7 +142,7 @@ export class Jediswap {
     token2: string,
     amountOfToken1: number,
     slippageInPercent = 0.5
-  ): Promise<TransactionReceiptResponse> {
+  ): Promise<any> {
     if (!ACCOUNT.wallets?.starknet?.address)
       throw new Error("There is no account.wallets.starknet.address!");
     if (!ACCOUNT.wallets.starknet.private)

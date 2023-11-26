@@ -2,7 +2,6 @@ import { QuoteRequest, Quote, fetchQuotes } from "@avnu/avnu-sdk";
 import { ethers } from "ethers";
 
 import puppeteer from "puppeteer";
-import { TransactionReceiptResponse } from "./models/transactionReceiptResponse.interface";
 import { Account } from "../account/models/account.type";
 import { CallData, uint256, Account as StarknetAccount } from "starknet";
 import { Network } from "../network";
@@ -17,7 +16,7 @@ export class Myswap {
     tokenTo: string,
     amount?: number,
     slippageInPercent = 0.5
-  ): Promise<TransactionReceiptResponse> {
+  ): Promise<any> {
     if (!ACCOUNT.wallets?.starknet?.address)
       throw new Error("There is no account.wallets.starknet.address!");
     if (!ACCOUNT.wallets.starknet.private)

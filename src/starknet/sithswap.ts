@@ -6,7 +6,6 @@ import { Account } from "../account/models/account.type";
 import { Network } from "../network";
 
 import puppeteer from "puppeteer";
-import { TransactionReceiptResponse } from "./models/transactionReceiptResponse.interface";
 import { StarknetApi } from "../starknetApi";
 import { log } from "../utils/console";
 import { delay } from "../utils/delay";
@@ -19,7 +18,7 @@ export class Sithswap {
     tokenTo: string,
     amount?: number,
     slippageInPercent = 0.5
-  ): Promise<TransactionReceiptResponse> {
+  ): Promise<any> {
     if (!ACCOUNT.wallets?.starknet?.address)
       throw new Error("There is no account.wallets.starknet.address!");
     if (!ACCOUNT.wallets.starknet.private)
