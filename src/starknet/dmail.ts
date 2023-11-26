@@ -48,14 +48,16 @@ export class Dmail {
       to,
       subject
     );
-    log(`Transaction hash: ${txHash} . Waiting...`);
+    log(`Transaction hash: ${txHash} .`);
     await delay(5);
-    const resp = await provider.waitForTransaction(txHash);
-    if (resp.execution_status !== "SUCCEEDED") {
-      throw new Error(`resp.execution_status is ${resp.execution_status}`);
-    }
+
+    // const resp = await provider.waitForTransaction(txHash);
+    // if (resp.execution_status !== "SUCCEEDED") {
+    //   throw new Error(`resp.execution_status is ${resp.execution_status}`);
+    // }
+
     log(
-      `Message with subject ${subject} sent (${resp.finality_status}) from ${ACCOUNT.wallets.starknet.address} to ${to} .`
+      `Message with subject ${subject} sent from ${ACCOUNT.wallets.starknet.address} to ${to} .`
     );
   }
 }

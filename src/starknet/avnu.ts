@@ -95,12 +95,14 @@ export class Avnu {
       AVNU_OPTIONS
     );
 
-    log(`Transaction hash: ${swapResp.transactionHash} . Waiting...`);
+    log(`Transaction hash: ${swapResp.transactionHash} .`);
     await delay(5);
-    const resp = await provider.waitForTransaction(swapResp.transactionHash);
-    if (resp.execution_status !== "SUCCEEDED") {
-      throw new Error(`resp.execution_status is ${resp.execution_status}`);
-    }
+
+    // const resp = await provider.waitForTransaction(txHash);
+    // if (resp.execution_status !== "SUCCEEDED") {
+    //   throw new Error(`resp.execution_status is ${resp.execution_status}`);
+    // }
+
     const amountOutMin =
       (quote.buyAmount * BigInt((100 - slippageInPercent) * 1000)) /
       BigInt(1000) /
@@ -109,14 +111,10 @@ export class Avnu {
       `${ethers.formatUnits(
         amountInWei,
         tokenFromBalance.decimals
-      )} ${tokenFrom} swapped (${
-        resp.finality_status
-      }) for minimum ${ethers.formatUnits(
+      )} ${tokenFrom} swapped for minimum ${ethers.formatUnits(
         amountOutMin,
         tokenToBalance.decimals
       )} ${tokenTo} from ${ACCOUNT.wallets.starknet.address} .`
     );
-
-    return resp;
   }
 }

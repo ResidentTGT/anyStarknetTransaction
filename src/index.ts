@@ -81,10 +81,7 @@ async function main() {
       `Account ${account.name} (${account.wallets.starknet.address}) started.`,
       MessageType.Info
     );
-    const action =
-      STARKNET_TRANSACTIONS[
-        Random.intFromInterval(1, STARKNET_TRANSACTIONS.length) - 1
-      ];
+    const action = Random.from(STARKNET_TRANSACTIONS);
 
     log(`Starting ${StarknetFunctions[action]} ...`);
     try {

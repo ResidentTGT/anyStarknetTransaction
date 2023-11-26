@@ -93,12 +93,8 @@ export class Unframed {
         }),
       },
     ]);
-    log(`Transaction hash: ${txHash} . Waiting...`);
+    log(`Transaction hash: ${txHash} .`);
     await delay(5);
-    const resp = await provider.waitForTransaction(txHash);
-    if (resp.execution_status !== "SUCCEEDED") {
-      throw new Error(`resp.execution_status is ${resp.execution_status}`);
-    }
     log(`Order cancelled.`);
   }
 }

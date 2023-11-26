@@ -113,26 +113,23 @@ export class Jediswap {
       [tokenAbi, ammAbi]
     );
 
-    log(`Transaction hash: ${txHash} . Waiting...`);
+    log(`Transaction hash: ${txHash} .`);
     await delay(5);
-    const resp = await provider.waitForTransaction(txHash);
 
-    if (resp.execution_status !== "SUCCEEDED") {
-      throw new Error(`resp.execution_status is ${resp.execution_status}`);
-    }
+    // const resp = await provider.waitForTransaction(txHash);
+    // if (resp.execution_status !== "SUCCEEDED") {
+    //   throw new Error(`resp.execution_status is ${resp.execution_status}`);
+    // }
+
     log(
       `${ethers.formatUnits(
         amountInWei,
         tokenFromBalance.decimals
-      )} ${tokenFrom} swapped (${
-        resp.finality_status
-      }) for minimum ${ethers.formatUnits(
+      )} ${tokenFrom} swapped for minimum ${ethers.formatUnits(
         amountOutMin,
         tokenToBalance.decimals
       )} ${tokenTo} from ${ACCOUNT.wallets.starknet.address} .`
     );
-
-    return resp;
   }
 
   static async addLiquidityRpc(

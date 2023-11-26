@@ -4,7 +4,14 @@ import { StarknetApi } from "../starknetApi";
 import { Network } from "../network";
 import { log } from "../utils/console";
 import { ethers } from "ethers";
-import { CallData, uint256, Account as StarknetAccount } from "starknet";
+import {
+  CallData,
+  uint256,
+  Account as StarknetAccount,
+  TransactionFinalityStatus,
+  TransactionExecutionStatus,
+  TransactionStatus,
+} from "starknet";
 import { delay } from "../utils/delay";
 
 export class Flexing {
@@ -45,12 +52,13 @@ export class Flexing {
         }),
       },
     ]);
-    log(`Transaction hash: ${txHash} . Waiting...`);
+    log(`Transaction hash: ${txHash} .`);
     await delay(5);
-    const resp = await provider.waitForTransaction(txHash);
-    if (resp.execution_status !== "SUCCEEDED") {
-      throw new Error(`resp.execution_status is ${resp.execution_status}`);
-    }
+
+    // const resp = await provider.waitForTransaction(txHash);
+    // if (resp.execution_status !== "SUCCEEDED") {
+    //   throw new Error(`resp.execution_status is ${resp.execution_status}`);
+    // }
     log(`Approved.`);
   }
 }
