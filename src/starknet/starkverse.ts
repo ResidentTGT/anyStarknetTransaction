@@ -44,6 +44,7 @@ export class Starkverse {
     ]);
     log(`Transaction hash: ${txHash} .`);
     await delay(5);
+    const resp = await starknetApi.waitTransaction(txHash);
     log(`Starkverse NFT minted from ${ACCOUNT.wallets.starknet.address}.`);
   }
 }

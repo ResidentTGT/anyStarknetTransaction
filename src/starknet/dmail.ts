@@ -26,7 +26,8 @@ export class Dmail {
     const DMAIL_CONTRACT_ADDRESS =
       "0x0454f0bd015e730e5adbb4f080b075fdbf55654ff41ee336203aa2e1ac4d4309";
 
-    const provider = new StarknetApi(network).getProvider();
+    const starknetApi = new StarknetApi(network);
+    const provider = starknetApi.getProvider();
 
     const { abi: dmailAbi } = await provider.getClassAt(DMAIL_CONTRACT_ADDRESS);
     if (!dmailAbi) throw new Error("There is no dmailAbi!");
@@ -51,10 +52,7 @@ export class Dmail {
     log(`Transaction hash: ${txHash} .`);
     await delay(5);
 
-    // const resp = await provider.waitForTransaction(txHash);
-    // if (resp.execution_status !== "SUCCEEDED") {
-    //   throw new Error(`resp.execution_status is ${resp.execution_status}`);
-    // }
+    const resp = await starknetApi.waitTransaction(txHash);
 
     log(
       `Message with subject ${subject} sent from ${ACCOUNT.wallets.starknet.address} to ${to} .`

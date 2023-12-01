@@ -254,4 +254,20 @@ export class StarknetApi {
 
     return resp;
   }
+
+  async waitTransaction(txHash: string): Promise<any> {
+    let txReceipt;
+    while (!txReceipt) {
+      try {
+        txReceipt = await this._provider.getTransactionReceipt(txHash);
+      } catch (e) {
+        await delay(3);
+      }
+    }
+    if (txReceipt.execution_status !== "SUCCEEDED") {
+      throw new Error(`Execution status is ${txReceipt.execution_status}`);
+    }
+
+    return txReceipt;
+  }
 }

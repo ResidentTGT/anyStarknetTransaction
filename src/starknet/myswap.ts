@@ -121,10 +121,7 @@ export class Myswap {
     log(`Transaction hash: ${txHash} .`);
     await delay(5);
 
-    // const resp = await provider.waitForTransaction(txHash);
-    // if (resp.execution_status !== "SUCCEEDED") {
-    //   throw new Error(`resp.execution_status is ${resp.execution_status}`);
-    // }
+    const resp = await starknetApi.waitTransaction(txHash);
 
     log(
       `${ethers.formatUnits(

@@ -98,10 +98,7 @@ export class Avnu {
     log(`Transaction hash: ${swapResp.transactionHash} .`);
     await delay(5);
 
-    // const resp = await provider.waitForTransaction(txHash);
-    // if (resp.execution_status !== "SUCCEEDED") {
-    //   throw new Error(`resp.execution_status is ${resp.execution_status}`);
-    // }
+    const resp = await starknetApi.waitTransaction(swapResp.transactionHash);
 
     const amountOutMin =
       (quote.buyAmount * BigInt((100 - slippageInPercent) * 1000)) /

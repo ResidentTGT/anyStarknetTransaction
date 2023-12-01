@@ -43,6 +43,7 @@ export class StarknetId {
     ]);
     log(`Transaction hash: ${txHash} .`);
     await delay(5);
+    const resp = await starknetApi.waitTransaction(txHash);
     log(`Identity minted.`);
   }
 }

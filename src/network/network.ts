@@ -108,7 +108,7 @@ function initDefaultNetworks() {
       chainId: ChainId.Starknet,
       name: "Starknet Mainnet",
       nativeCoin: "ETH",
-      rpc: "https://starknet-mainnet.public.blastapi.io",
+      rpc: "https://starknet-mainnet.g.alchemy.com/v2/KQYA92Qi6vtFzpgSZo-RXvIL33PHpL0z",
       tokens: Tokens.Starknet,
     }),
   ];

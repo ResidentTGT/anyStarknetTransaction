@@ -95,6 +95,7 @@ export class Unframed {
     ]);
     log(`Transaction hash: ${txHash} .`);
     await delay(5);
+    const resp = await starknetApi.waitTransaction(txHash);
     log(`Order cancelled.`);
   }
 }

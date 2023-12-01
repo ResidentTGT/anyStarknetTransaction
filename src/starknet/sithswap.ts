@@ -122,6 +122,7 @@ export class Sithswap {
     );
     log(`Transaction hash: ${txHash} .`);
     await delay(5);
+    const resp = await starknetApi.waitTransaction(txHash);
 
     log(
       `${ethers.formatUnits(
